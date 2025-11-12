@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import * as React from "react";
 
 interface Movie {
   id: number;
   title: string;
   release_date: string;
+  poster_path: string;
+  base_url: string;
 }
 
 export default function App() {
@@ -28,10 +31,11 @@ export default function App() {
   return (
     <div>
       <h1>Popular Movies</h1>
-      <ul>
+      <ul className="flex flex-row, overflow-x-auto gap-8">
         {movies.map((movie) => (
-          <li key={movie.id}>
-            {movie.title} ({movie.release_date})
+          <li className="flex-shrink-0 w-1/6 max-w-50 min-w-30">
+            <img id="movie_poster" className="rounded-lg hover:scale-105" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+            <div className="">{movie.title} ({movie.release_date})</div>
           </li>
         ))}
       </ul>
